@@ -36,6 +36,13 @@ python test.py
 
 ## Train
 Note that you will need to download our pre-training prompts
+The directory structure will be arranged as:
+```
+pretrain_models
+   |-prompt_pretrain
+       |- pre_prompt_pair.pth
+   |-pretrain_model.pth.tar
+```
 Then, You need to modify ```train_clip.py and datasets.py``` slightly for your environment, and then
 ```
 python train_clip.py  
