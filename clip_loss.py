@@ -25,7 +25,7 @@ def get_clip_score(tensor,words):
 		logits_per_image, logits_per_text = model(image, text)
 		probs = logits_per_image.softmax(dim=-1)
 		if len(words)==2:
-			prob = probs[0][1]/probs[0][0]##第一次反着除的
+			prob = probs[0][1]/probs[0][0]
 			score =score + prob
 
 		else:
