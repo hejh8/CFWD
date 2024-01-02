@@ -48,7 +48,6 @@ def parse_args_and_config():
     parser.add_argument('--seed', default=230, type=int, metavar='N',
                         help='Seed for initializing training (default: 230)')
     parser.add_argument('--prompt_pretrain_dir', type=str, default= './pretrain_models/prompt_pretrain/init_prompt_pair.pth')
-    parser.add_argument('--load_pretrain_prompt', type=lambda x: (str(x).lower() == 'true'), default= True)
     parser.add_argument('--length_prompt', type=int, default=16)
 
 
