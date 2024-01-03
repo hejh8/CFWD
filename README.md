@@ -11,8 +11,8 @@ For more details, please refer to our [paper link]()
 ## Project Setup
  Clone Repo
  ```
- git clone https://github.com/He-Jinhong/CFGW.git
- cd CFGW  
+ git clone https://github.com/He-Jinhong/CFGW.git](https://github.com/He-Jinhong/CFWD.git
+ cd CFWD  
  ```
 Create Conda Environment and Install Dependencies:
 ```
