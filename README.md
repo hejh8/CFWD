@@ -1,4 +1,4 @@
-# Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion [[Paper]]().
+# Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion [[Paper]](https://arxiv.org/abs/2401.03788).
 <h4 align="center">Minglong Xue<sup>1</sup>, Jinhong He<sup>1</sup>, Yanyi He<sup>1</sup>, Zhipu Liu<sup>1</sup>, Wenhai Wang<sup>2</sup></center>, Tong Lu<sup>3</sup></center>
 <h4 align="center">1.Chongqing University of Technology
 <h4 align="center">2.The Chinese University of Hong Kong
@@ -6,7 +6,7 @@
 
 ## Introduction
 In this repo, we propose a novel and robust low-light image enhancement method, named CFGW. Extensive experiments on publicly available real-world benchmarks show that our method outperforms existing SOTA methods quantitatively and visually, maximizing image restoration similar to normal images.
-For more details, please refer to our [paper link]()
+For more details, please refer to our [paper link](https://arxiv.org/abs/2401.03788)
 ![](./Figs/fig2.png)
 
 ## Project Setup
@@ -55,6 +55,14 @@ python train_clip.py
 ## Citation
 If you use this code or ideas from the paper for your research, please cite our paper:
 ```
+@misc{xue2024lowlight,
+      title={Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion}, 
+      author={Minglong Xue and Jinhong He and Yanyi He and Zhipu Liu and Wenhai Wang and Mingliang Zhou},
+      year={2024},
+      eprint={2401.03788},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 
 ```
 
