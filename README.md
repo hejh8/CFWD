@@ -12,7 +12,7 @@ For more details, please refer to our [paper link](https://arxiv.org/abs/2401.03
 ## Project Setup
  Clone Repo
  ```
- git clone https://github.com/He-Jinhong/CFGW.git](https://github.com/He-Jinhong/CFWD.git
+ git clone https://github.com/He-Jinhong/CFWD.git
  cd CFWD  
  ```
 Create Conda Environment and Install Dependencies:
