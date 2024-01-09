@@ -1,8 +1,8 @@
 # Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion [[Paper]](https://arxiv.org/abs/2401.03788).
-<h4 align="center">Minglong Xue<sup>1</sup>, Jinhong He<sup>1</sup>, Yanyi He<sup>1</sup>, Zhipu Liu<sup>1</sup>, Wenhai Wang<sup>2</sup></center>, Tong Lu<sup>3</sup></center>
+<h4 align="center">Minglong Xue<sup>1</sup>, Jinhong He<sup>1</sup>, Yanyi He<sup>1</sup>, Zhipu Liu<sup>1</sup>, Wenhai Wang<sup>2</sup></center>, Mingliang Zhou<sup>3</sup></center>
 <h4 align="center">1.Chongqing University of Technology
 <h4 align="center">2.The Chinese University of Hong Kong
-<h4 align="center">3.State Key laboratory for Novel Software Technology, Nanjing University</center></center>
+<h4 align="center">3.Chongqing University</center></center>
 
 ## Introduction
 In this repo, we propose a novel and robust low-light image enhancement method, named CFGW. Extensive experiments on publicly available real-world benchmarks show that our method outperforms existing SOTA methods quantitatively and visually, maximizing image restoration similar to normal images.
