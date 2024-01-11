@@ -22,7 +22,7 @@ from tqdm import tqdm
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 # load clip
-c_model, preprocess = clip.load( "/home/ubuntu/Low-image/Diffusion-Low-Light-main/clip_model/ViT-B-32.pt", device=torch.device("cpu"))  # ViT-B/32
+c_model, preprocess = clip.load( "ViT-B/32", device=torch.device("cpu"))  # ViT-B/32
 c_model.to(device)
 
 
