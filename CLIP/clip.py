@@ -33,7 +33,7 @@ _MODELS = {
     "RN50x4": "https://openaipublic.azureedge.net/clip/models/7e526bd135e493cef0776de27d5f42653e6b4c8bf9e0f653bb11773263205fdd/RN50x4.pt",
     "RN50x16": "https://openaipublic.azureedge.net/clip/models/52378b407f34354e150460fe41077663dd5b39c54cd0bfd2b27167a4a06ec9aa/RN50x16.pt",
     "RN50x64": "https://openaipublic.azureedge.net/clip/models/be1cfb55d75a9666199fb2206c106743da0f6468c9d327f3e0d0a543a9919d9c/RN50x64.pt",
-    "ViT-B-32": "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt",
+    "ViT-B/32": "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt",
     "ViT-B/16": "https://openaipublic.azureedge.net/clip/models/5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f/ViT-B-16.pt",
     "ViT-L/14": "https://openaipublic.azureedge.net/clip/models/b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836/ViT-L-14.pt",
     "ViT-L/14@336px": "https://openaipublic.azureedge.net/clip/models/3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02/ViT-L-14-336px.pt",
@@ -74,19 +74,18 @@ def _download(url: str, root: str):
 
 def _convert_image_to_rgb(image):
     return image.convert("RGB")
-#这行代码使用图像对象的 convert 方法将图像转换为RGB模式，并将转换后的图像对象返回。在RGB模式下，每个像素由红色、绿色和蓝色通道的值表示。这样可以确保图像在处理过程中始终以RGB格式进行操作。
+
 
 
 def _transform(n_px):
     return Compose([
         Resize(n_px, interpolation=BICUBIC),
-        #这个操作将输入图像调整为指定的 n_px 大小，使用双三次插值方法进行插值。
+
         CenterCrop(n_px),
-        #这个操作从中心裁剪输入图像，使其大小为 n_px。
+
         _convert_image_to_rgb,
         ToTensor(),
         Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)),
-        #这个操作对图像进行归一化，通过减去均值并除以标准差来标准化图像的每个通道。这里使用的均值和标准差是预先计算好的值。
     ])
 
 
@@ -108,7 +107,7 @@ def load(name: str, device: Union[str, torch.device] = "cuda" if torch.cuda.is_a
 
     jit : bool
         Whether to load the optimized JIT model or more hackable non-JIT model (default).
-        JIT（Just-In-Time）模型是指在运行时动态编译和优化的模型可以在运行时根据需要进行优化，并具有更好的推理性能和跨平台兼容性
+        JIT（Just-In-Time）
 
     download_root: str
         path to download the model files; by default, it uses "~/.cache/clip"
@@ -149,12 +148,12 @@ def load(name: str, device: Union[str, torch.device] = "cuda" if torch.cuda.is_a
     # patch the device names
     device_holder = torch.jit.trace(lambda: torch.ones([]).to(torch.device(device)), example_inputs=[])
     device_node = [n for n in device_holder.graph.findAllNodes("prim::Constant") if "Device" in repr(n)][-1]
-    #这段代码用于修复设备名称。它创建了一个用于跟踪设备的 device_holder，并从图中找到最后一个包含 "Device" 的常量节点。
+
 
     def patch_device(module):
         try:
             graphs = [module.graph] if hasattr(module, "graph") else []
-            #hasattr(module, "graph") 是一个判断模块是否具有 graph 属性的条件表达式
+            #hasattr(module, "graph") 
         except RuntimeError:
             graphs = []
 
@@ -226,7 +225,7 @@ def tokenize(texts: Union[str, List[str]], context_length: int = 77, truncate: b
         texts = [texts]
 
     sot_token = _tokenizer.encoder["<|startoftext|>"]
-    #<|startoftext|>"是GPT-3模型中的特殊token，表示一段文本的开始。在生成文本时，我们可以使用它来指定起始文本，使生成的文本沿着我们期望的方向进行发展。
+
     eot_token = _tokenizer.encoder["<|endoftext|>"]
     all_tokens = [[sot_token] + _tokenizer.encode(text) + [eot_token] for text in texts]
     if packaging.version.parse(torch.__version__) < packaging.version.parse("1.8.0"):
