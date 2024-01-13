@@ -38,9 +38,7 @@ class Bottleneck(nn.Module):
                 ("0", nn.Conv2d(inplanes, planes * self.expansion, 1, stride=1, bias=False)),
                 ("1", nn.BatchNorm2d(planes * self.expansion))
             ]))
-            #定义一个Sequential容器，包含了平均池化层、1x1卷积层和批归一化层。
-            #这段代码的作用是为了构建一个残差块，在残差块中对输入进行必要的下采样或维度变换，以便能够顺利地进行残差连接。
-            #"-1", "0", "1" 并不是Python中的特殊语法，而是作者选择的用于标识子模块的名称或索引的字符串
+
 
     def forward(self, x: torch.Tensor):
         identity = x
@@ -63,8 +61,7 @@ class AttentionPool2d(nn.Module):
     def __init__(self, spacial_dim: int, embed_dim: int, num_heads: int, output_dim: int = None):
         super().__init__()
         self.positional_embedding = nn.Parameter(torch.randn(spacial_dim ** 2 + 1, embed_dim) / embed_dim ** 0.5)
-        # positional_embedding 是位置编码矩阵，形状为(spacial_dim ** 2 + 1, embed_dim)，torch.randn初始化位置嵌入，并对其进行了归一化处理。
-        # 其中spacial_dim表示输入特征图的空间维度大小，embed_dim表示嵌入维度大小。它是一个可训练的参数，通过nn.Parameter包装。
+
         self.k_proj = nn.Linear(embed_dim, embed_dim)
         self.q_proj = nn.Linear(embed_dim, embed_dim)
         self.v_proj = nn.Linear(embed_dim, embed_dim)
@@ -262,16 +259,7 @@ class CLIP(nn.Module):
                  transformer_heads: int,
                  transformer_layers: int
                  ):
-# embed_dim：嵌入的维度，表示图像和文本的特征嵌入后的维度。
-# image_resolution：图像的分辨率，用于计算图像经过视觉编码器后的特征图大小。
-# vision_layers：视觉编码器的层数。可以是一个包含四个整数值的元组(conv1x1, conv3x3, conv1x1_out, mlp)，分别表示1x1卷积、3x3卷积、输出1x1卷积和多层感知机的层数；也可以是一个整数值，表示所有层都使用相同的卷积层数。
-# vision_width：视觉编码器中卷积层的通道数。
-# vision_patch_size：视觉编码器中的感受野大小，即输入图像被分割为小块的大小。
-# context_length：文本输入的上下文长度。
-# vocab_size：词汇表的大小，即文本输入的单词数量。
-# transformer_width：文本编码器中Transformer模块的隐藏层维度。
-# transformer_heads：文本编码器中Transformer模块的注意力头数。
-# transformer_layers：文本编码器中Transformer模块的层数。
+
         super().__init__()
 
         self.context_length = context_length
@@ -316,7 +304,7 @@ class CLIP(nn.Module):
     def initialize_parameters(self):
         nn.init.normal_(self.token_embedding.weight, std=0.02)
         nn.init.normal_(self.positional_embedding, std=0.01)
-        #nn.init.normal_ 函数用于对张量参数进行正态分布初始化。std:标准差
+
 
         if isinstance(self.visual, ModifiedResNet):
             if self.visual.attnpool is not None:
@@ -350,9 +338,7 @@ class CLIP(nn.Module):
         mask.fill_(float("-inf"))
         mask.triu_(1)  # zero out the lower diagonal
         return mask
-# 这部分代码首先创建了一个形状为 (self.context_length, self.context_length) 的空张量 mask，然后用负无穷大（-inf）填充整个张量。
-# 接着使用 triu_ 方法将 mask 的下三角部分（不含对角线）置零，这样就实现了“因果注意力”掩码，
-# 确保每个位置只能关注到它之前的位置，而不能关注到它之后的位置。这种掩码在自回归模型（如Transformer中的解码器部分）中经常被使用。
+
     @property
     def dtype(self):
         return self.visual.conv1.weight.dtype
@@ -373,8 +359,7 @@ class CLIP(nn.Module):
         # x.shape = [batch_size, n_ctx, transformer.width]
         # take features from the eot embedding (eot_token is the highest number in each sequence)
         x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)] @ self.text_projection
-        # 然后在特定位置提取特征，这里使用 text.argmax(dim=-1) 找到每个序列中最大的值对应的索引，然后用这些索引来提取特征，得到指定位置的特征表示。
-        # 接着使用 @ 运算符将这些特征表示和文本投影层（text_projection）进行矩阵乘法运算，得到最终的文本特征表示
+
 
         return x
 
@@ -385,15 +370,13 @@ class CLIP(nn.Module):
         # normalized features
         image_features = image_features / image_features.norm(dim=1, keepdim=True)
         text_features = text_features / text_features.norm(dim=1, keepdim=True)
-        #接着，对图像特征和文本特征进行归一化处理，即将它们各自除以自身的范数（模长），以使它们具有单位长度。
+
 
         # cosine similarity as logits
         logit_scale = self.logit_scale.exp()
         logits_per_image = logit_scale * image_features @ text_features.t()
         logits_per_text = logits_per_image.t()
-        # 然后，利用预定义的 logit_scale 参数对归一化后的特征进行缩放。
-        # 接着，通过计算图像特征和文本特征之间的余弦相似度，生成图像与文本之间的相关性得分，并进行缩放，
-        # 得到每个图像对应的文本相关性得分（logits_per_image）和每个文本对应的图像相关性得分（logits_per_text）。
+
 
         # shape = [global_batch_size, global_batch_size]
         return logits_per_image, logits_per_text
