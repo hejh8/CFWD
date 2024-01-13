@@ -28,7 +28,7 @@ diffusion:
 
 training:
     batch_size: 8
-    n_epochs: 1000
+    n_epochs: 4000
     validation_freq: 1000
 
 optim:
