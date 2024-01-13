@@ -8,7 +8,7 @@ from CLIP.clip import load
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 #load clip
-model, preprocess = clip.load("./ViT-B/32.pt", device=torch.device("cpu"))#"ViT-B/32"
+model, preprocess = clip.load("ViT-B/32.pt", device=torch.device("cpu"))
 model.to(device)
 for para in model.parameters():
 	para.requires_grad = False
