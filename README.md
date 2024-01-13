@@ -53,17 +53,13 @@ python train_clip.py
 ![](./Figs/pair.png)
 
 ## Citation
-If you use this code or ideas from the paper for your research, please cite our paper:
 ```
-@misc{xue2024lowlight,
-      title={Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion}, 
-      author={Minglong Xue and Jinhong He and Yanyi He and Zhipu Liu and Wenhai Wang and Mingliang Zhou},
-      year={2024},
-      eprint={2401.03788},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{xue2024low,
+  title={Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion},
+  author={Xue, Minglong and He, Jinhong and He, Yanyi and Liu, Zhipu and Wang, Wenhai and Zhou, Mingliang},
+  journal={arXiv preprint arXiv:2401.03788},
+  year={2024}
 }
-
 ```
 
 ## Acknowledgement
