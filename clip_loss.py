@@ -102,7 +102,7 @@ class L_clip_from_feature(nn.Module):
 		k1 = get_clip_score_from_feature(x,text_features)
 		return k1
 		
-res_model, res_preprocess = load("/home/ubuntu/Low-image/Diffusion-Low-Light-main/clip_model/RN101.pt", device=device)
+res_model, res_preprocess = load("RN101.pt", device=device)
 for para in res_model.parameters():
 	para.requires_grad = False
 
