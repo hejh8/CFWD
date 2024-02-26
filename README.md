@@ -5,7 +5,7 @@
 <h4 align="center">3.Chongqing University</center></center>
 
 ## Introduction
-In this repo, we propose a novel and robust low-light image enhancement method, named CFGW. Extensive experiments on publicly available real-world benchmarks show that our method outperforms existing SOTA methods quantitatively and visually, maximizing image restoration similar to normal images.
+In this repo, we propose a novel and robust low-light image enhancement method, named CFWD. Extensive experiments on publicly available real-world benchmarks show that our method outperforms existing SOTA methods quantitatively and visually, maximizing image restoration similar to normal images.
 For more details, please refer to our [paper link](https://arxiv.org/abs/2401.03788)
 ![](./Figs/fig2.png)
 
