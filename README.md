@@ -52,7 +52,7 @@ python train_clip.py
 ```
 @article{xue2024low,
   title={Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion},
-  author={Xue, Minglong and He, Jinhong and He, Yanyi and Liu, Zhipu and Wang, Wenhai and Zhou, Mingliang},
+  author={Xue, Minglong and He, Jinhong and Wang, Wenhai and Zhou, Mingliang},
   journal={arXiv preprint arXiv:2401.03788},
   year={2024}
 }
