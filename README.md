@@ -39,12 +39,16 @@ We will re-update soon.
 
 ## Citation
 ```
-@article{xue2024low,
-  title={Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion},
-  author={Xue, Minglong and He, Jinhong and Wang, Wenhai and Zhou, Mingliang},
-  journal={arXiv preprint arXiv:2401.03788},
-  year={2024}
+@article{10.1145/3764933,
+author = {Xue, Minglong and He, Jinhong and Wang, Wenhai and Zhou, Mingliang},
+title = {Low-light Image Enhancement via CLIP-Fourier Guided Wavelet Diffusion},
+year = {2025},
+issn = {1551-6857},
+url = {https://doi.org/10.1145/3764933},
+doi = {10.1145/3764933},
+journal = {ACM Trans. Multimedia Comput. Commun. Appl.}
 }
+
 ```
 
 ## Acknowledgement
